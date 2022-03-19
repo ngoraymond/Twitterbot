@@ -2,13 +2,10 @@ import praw
 import time
 import os
 import re
-import random
-import login
 
 #Looks for the top posts in a certain subreddit using praw, returns as dict
 #Looks for posts with a recognizable image and title.
 def getPosts(acc, subreddit, number):
-    acc = login.login()
     returnList = []
     subred = acc.subreddit(subreddit)
     numPosts = 0 #Checks how many posts went through
@@ -26,7 +23,7 @@ def getPosts(acc, subreddit, number):
         if submission.permalink[3:7] == 'rpan': #RPAN posts
             continue
         returnList.append(submission)
-
+        time.sleep(1)
         numPosts += 1
 
     return returnList
